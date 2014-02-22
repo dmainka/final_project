@@ -1,5 +1,7 @@
 FinalProject::Application.routes.draw do
 
+  resources :customers
+
   # Home page
   root  'static_pages#home'
 
