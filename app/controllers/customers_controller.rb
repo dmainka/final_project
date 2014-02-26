@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   before_action :signed_in_customer, only: [:edit, :update]
-  before_action :correct_customer,   only: [:edit, :update]
+  before_action :correct_customer,   only: [:show, :edit, :update]
   before_action :admin_user,         only: :destroy
 
   def index

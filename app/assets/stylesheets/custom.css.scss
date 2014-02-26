@@ -177,6 +177,20 @@ input {
   }
 }
 
+/* Products index */
+
+.products {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
 
 /* miscellaneous */
 
@@ -189,3 +203,10 @@ input {
 }
 
 
+.chart {
+  text-align: center;
+  margin: 40px;
+}
+.chart:hover {
+  background: #fbf6ba;
+}

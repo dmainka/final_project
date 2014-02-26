@@ -1,7 +1,10 @@
 FinalProject::Application.routes.draw do
 
+  get "products/index"
+  get "products/show"
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
+  resources :products
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
