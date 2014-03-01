@@ -4,15 +4,16 @@
       <%= link_to "Nile.com", root_path, id: "logo" %>
       <nav>
         <ul class="nav nav-justified">
+        </ul>
+        <ul class="nav pull-right">
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Department<b class="caret"></b></a>
             <ul class="dropdown-menu">
+              <li>All</li>
               <li>Books</li>
               <li>Music</li>
             </ul>
           </li>
-        </ul>
-        <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
@@ -29,11 +30,15 @@
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
               </ul>
+              <li>
+                <%= link_to carts_path do %>
+                  <i class="fa fa-shopping-cart"></i> Cart <span class="badge">0</span>
+                <% end %>
+              </li>
             </li>
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
-          <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">2</span></a></li>
         </ul>
       </nav>
     </div>

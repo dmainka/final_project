@@ -69,6 +69,38 @@ all_product_data = [
     :price => 32.99,
     :picture_url => "http://ecx.images-amazon.com/images/I/51lFbn3LPCL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
     },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Books'),
+    :name => "The Rapid Rubyist",
+    :description => "The Rapid Rubyist is a step by step guide that uses simple examples to teach Ruby. Each example has a brief description and then code examples to teach the concept. Many books focus on giving verbose explanations that try to give every detail possible, The Rapid Rubyist is different in that it tries to be concise, giving you all the information you need in a small package.
+
+The Rapid Rubyist gets you writing code fast and gives you a reference you can come back to later when you need to remember how something works. It covers everything from the basics like strings and arrays to everyone's favorite topic: meta-programming!",
+    :price => 4.99,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51emyV0F1FL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Books'),
+    :name => "Ruby on Rails 4.0 Guide",
+    :description => "A step by step guide to learn Ruby on Rails 4.0. It includes a basic Ruby 2.0 tutorial and is written for programmers who know at least one other programming language and are familiar with HTML.  Topics: How to install a development system on Linux/Windows/Mac OS X, Ruby Basics, First Steps with Rails, ActiveRecord, Scaffolding, REST, Routes, Tests, Cookies and Sessions, Action Mailer, Internationalization, Bundler and Gems, Asset Pipeline, JavaScript, Caching, How to setup a production webserver on Linux, Scaffold Controller Template, Model Template, Forms.  Hands on code examples show how problems are solved. The reader can dive into a specific topic without having to run through a gigantic first to last page project.",
+    :price => 32.99,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51CJg3LarTL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Books'),
+    :name => "The Ruby Programming Language",
+    :description => "The Ruby Programming Language is the authoritative guide to Ruby and provides comprehensive coverage of versions 1.8 and 1.9 of the language. It was written (and illustrated!) by an all-star team",
+    :price => 32.99,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51c3tL7dShL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor1').id,
+    :department_id => Department.find_by(name:'Books'),
+    :name => "Beginning Rails 4 (The Expert's Voice in Web Development)",
+    :description => "Beginning Rails 4 is a book that will guide you from never having programmed with Ruby, to having a Rails application built and deployed to the web. You’ll learn how to combine all the components of Rails to develop your own web applications. You will use test driven development to make sure your application works exactly like you expect.  You will learn how to use Git for source control and best practice techniques to create applications like a pro. Essential, and often-missed, information on testing and learning to program with Ruby are also covered.  This book is well suited for someone with little to no Ruby or Rails experience, or possibly even someone with no experience developing web applications at all. Beginning Rails 4 does assume a basic familiarity with the web and typical web terms, but doesn’t require you to be an expert of these. This book will springboard your journey into web application development, and show you how much fun building web applications with Ruby on Rails can be.",
+    :price => 32.99,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51JWihJrnDL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
+    },
+
+
 ]
 
 Product.destroy_all

@@ -1,5 +1,20 @@
-<li>
-  <%= link_to product.name, product %>
-  <br>
-  <%= image_tag product.picture_url,  width: "100", height: "200" %>
-</li>
+<!-- <div class="container-fluid"> -->
+  <div class="row-fluid">
+    <div class="span4">
+      <li>
+        <h4><%= link_to product.name, product %></h4>
+
+        <p><%= link_to image_tag(product.picture_url,  width: "150", height: "250"), product %></p>
+        <p>Price: $<%= sprintf("%.2f", product.price) %></p>
+        <%= link_to "View details »", product, :class => "btn btn-info" %>
+        <%= link_to "Add to cart", '#', :class => "btn btn-success" %>
+      </li>
+    </div>
+
+    <div class="span8">
+      <li>
+        <p><b>Description: </b><%= product.description %></p>
+      </li>
+    </div>
+  </div>
+<!-- </div> -->
