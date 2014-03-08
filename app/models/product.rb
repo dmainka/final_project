@@ -8,11 +8,14 @@ class Product < ActiveRecord::Base
 
   #ensure that there are no cart_items referencing this product
   def ensure_not_referenced_by_any_cart_item
+
     if cart_items.count.zero?
       return true
     else
       errors.add(:base, 'Cart Items present')
       return false
     end
+
+  end
 
 end

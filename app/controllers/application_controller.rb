@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
+
     def current_cart
       Cart.find(session[:cart_id])
     rescue
@@ -12,4 +13,5 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = cart.id
       cart
     end
+
 end

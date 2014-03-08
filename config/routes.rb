@@ -9,6 +9,7 @@ FinalProject::Application.routes.draw do
   resources :products
   resources :carts
   resources :cart_items
+  resources :books
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

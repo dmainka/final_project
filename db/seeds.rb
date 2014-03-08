@@ -99,8 +99,6 @@ The Rapid Rubyist gets you writing code fast and gives you a reference you can c
     :price => 32.99,
     :picture_url => "http://ecx.images-amazon.com/images/I/51JWihJrnDL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
     },
-
-
 ]
 
 Product.destroy_all
@@ -113,5 +111,45 @@ all_product_data.each do |product_info|
   p.price = product_info[:price]
   p.picture_url = product_info[:picture_url]
   p.save
+end
+
+all_book_data = [
+  { :product_id => Product.find_by(name:"Ruby on Rails Tutorial").id,
+    :author => "Michael Hartl",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"Agile Web Development with Rails 4 (Pragmatic Programmers)").id,
+    :author => "Author1",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"Practical Object-Oriented Design in Ruby: An Agile Primer").id,
+    :author => "Author2",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"The Rapid Rubyist").id,
+    :author => "Author3",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"Ruby on Rails 4.0 Guide").id,
+    :author => "Author4",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"The Ruby Programming Language").id,
+    :author => "Author5",
+    :pages => 100
+    },
+  { :product_id => Product.find_by(name:"Beginning Rails 4 (The Expert's Voice in Web Development)").id,
+    :author => "Author6",
+    :pages => 100
+    },
+]
+
+Book.destroy_all
+all_book_data.each do |book_info|
+  b = Book.new
+  b.product_id = book_info[:product_id]
+  b.author = book_info[:author]
+  b.pages = book_info[:pages]
+  b.save
 end
 

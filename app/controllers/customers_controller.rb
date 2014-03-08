@@ -68,4 +68,5 @@ class CustomersController < ApplicationController
   def admin_user
       redirect_to(root_url) unless current_customer.admin?
     end
+
 end
