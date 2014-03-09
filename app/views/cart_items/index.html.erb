@@ -1,13 +1,22 @@
 <% provide(:title, 'Cart') %>
-<h1>Cart</h1>
+<h1>Your Cart (<%= @cart_items.sum(:quantity) %>)</h1>
 
-<% @cart_items.each do |cart_item| %>
+<% if @cart_items.count == 0 %>
 
-  <div class="row">
+  <li>Your cart is currently empty.</li>
 
+<% else %>
 
-
-  </div>
+  <% @cart_items.each do |cart_item| %>
+    <div class="row-fluid">
+      <li>
+          <%= cart_item.quantity %> x <%= link_to cart_item.product.name, cart_item.product %> @ <%= number_to_currency(cart_item.product.price) %>
+      </li>
+    </div>
+  <% end %>
 
 <% end %>
 
+<br>
+
+<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?', class: 'btn btn-danger' %>

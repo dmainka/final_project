@@ -11,8 +11,8 @@ class ProductsController < ApplicationController
     # case department.name
     #   when :Books
         # @book = Book.find_by :id => product_id
-        @book = Book.find_by :id => product_id
-        redirect_to '/books/#{product_id}'
+        # @book = Book.find_by :id => product_id
+        # redirect_to '/books/#{product_id}'
     #   when :Music
 
     #   else

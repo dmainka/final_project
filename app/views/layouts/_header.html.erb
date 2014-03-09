@@ -9,9 +9,9 @@
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Department<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li>All</li>
-              <li>Books</li>
-              <li>Music</li>
+              <li><%= link_to "All", products_index_path %></li>
+              <li><%= link_to "Books", products_index_path %></li>
+              <li><%= link_to "Music", products_index_path %></li>
             </ul>
           </li>
           <li><%= link_to "Home", root_path %></li>
@@ -31,8 +31,8 @@
                 </li>
               </ul>
               <li>
-                <%= link_to carts_path do %>
-                  <i class="fa fa-shopping-cart"></i> Cart <span class="badge">0</span>
+                <%= link_to cart_items_path do %>
+                  <i class="fa fa-shopping-cart"></i> Cart <span class="badge"><%= session[:cart_count] %></span>
                 <% end %>
               </li>
             </li>

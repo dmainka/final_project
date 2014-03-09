@@ -4,8 +4,13 @@
         <h4><%= @product.name %></h4>
 
         <p><%= image_tag(@product.picture_url,  width: "150", height: "250") %></p>
-        <p>Price: $<%= sprintf("%.2f", @product.price) %></p>
-        <%= link_to "Add to cart", '#', :class => "btn btn-success" %>
+        <p>Price: <%= number_to_currency(@product.price) %></p>
+        <% if signed_in? %>
+          <%= link_to "Add to cart", cart_items_path(:product_id => @product), :method => :post, :class => "btn btn-success" %>
+        <% else %>
+          <% session[:return_to] = current_page %>
+          <%= link_to "Add to cart", sign_in_path, :class => "btn btn-success" %>
+        <% end %>
       </li>
     </div>
 
