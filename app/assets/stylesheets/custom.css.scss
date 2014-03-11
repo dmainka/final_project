@@ -192,6 +192,14 @@ input {
   }
 }
 
+/* Cart items */
+#quantity {
+  width: 5%;
+}
+
+
+
+
 /* miscellaneous */
 
 .debug_dump {
@@ -201,7 +209,6 @@ input {
   margin-top: 45px;
   @include box_sizing;
 }
-
 
 // .chart {
 //   text-align: center;
@@ -213,4 +220,8 @@ input {
 
 .row-fluid {
   border-bottom: 1px solid $grayLighter;
+}
+
+.vcenter {
+  vertical-align: middle;
 }

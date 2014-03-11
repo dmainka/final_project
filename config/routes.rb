@@ -1,15 +1,14 @@
 FinalProject::Application.routes.draw do
 
-  resources :carts
+  match 'cart_items/empty', to: 'cart_items#empty_cart', via: 'delete'
 
-  get "products/index"
-  get "products/show"
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
-  resources :products
-  resources :carts
-  resources :cart_items
-  resources :books
+  resources :products, only: [:index, :show]
+  resources :cart_items, only: [:index, :edit, :update, :create]
+  resources :books, only: [:show]
+  resources :orders, only: [:new, :index, :create, :show]
+  resources :order_items, only: [:index, :show]
 
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

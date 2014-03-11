@@ -1,8 +1,10 @@
 class CartItemsController < ApplicationController
 
+  # before_action :correct_customer only: [:edit, :update, :destroy, :show], { |cart_item| correct_customer cart_item }
+
   def index
-    @cart_items = CartItem.where("customer_id = ?", current_customer);
-    session[:cart_count] = CartItem.where("customer_id = ?", current_customer).sum(:quantity)
+    @cart_items = CartItem.where("customer_id = ?", current_customer).paginate(page: params[:page], :per_page => 10)
+    render 'index_table'
   end
 
   def show
@@ -23,19 +25,63 @@ class CartItemsController < ApplicationController
       cart_item.save
     end
 
-    redirect_to(cart_items_path, :notice => "Cart item was successfully created.")
+    redirect_to(cart_items_path, :notice => "Item was successfully added to your cart.")
+  end
 
-    # @cart_items = @cart.cart_items.build(:product => product)
+  def destroy
+    if (!current_customer?(@cart_item.customer_id))
+      flash[:notice] = "Nice try!"
+      redirect_to cart_items_path
+    else
+      CartItem.find(params[:id]).destroy
+      redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
+    end
+  end
 
+  def edit
+    @cart_item = CartItem.find(params[:id])
+    if (!current_customer?(@cart_item.customer_id))
+      flash[:notice] = "Nice try!"
+      redirect_to cart_items_path
+    end
+  end
+
+  def update
+    if (!current_customer?(@cart_item.customer_id))
+      flash[:notice] = "Nice try!"
+      redirect_to cart_items_path
+    end
+
+    redirect_to(cart_items_path, :notice => "Item was successfully edited.")
+
+    # get all cart items for current_customer
+    # cart_items = CartItem.where("customer_id = ?", current_customer);
+
+    # current_item = cart_items.where(:product_id => params[:product_id]).first
+
+    # current_item = @cart.update_product(params[:product_id], params[:quantity])
     # respond_to do |format|
-    #   if @cart_item.save
-    #     format.html { redirect_to(@cart_item.cart, :notice => 'Cart item was successfully created.') }
-    #     format.xml  { render :xml => @cart_item, :status => :created, :location => @cart_item }
-    #   else
-    #     format.html { render :action => "new" }
-    #     format.xml { render :xml => @cart_item.errors, :status => :unprocessable_entity }
-    #   end
+    #     if @cart_item.save
+    #         format.html { redirect_to current_cart, notice: 'Changed' }
+    #         format.js
+    #     else
+    #         format.html { render action: "new" }
+    #     end
     # end
   end
+
+  def empty_cart
+    cart_items = CartItem.where("customer_id = ?", current_customer);
+
+    cart_items.each do |cart_item|
+      cart_item.destroy
+    end
+
+    redirect_to(cart_items_path, :notice => "Cart was successfully emptied.")
+  end
+
+  private
+
+
 
 end

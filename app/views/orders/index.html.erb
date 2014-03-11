@@ -1,0 +1,27 @@
+<% provide(:title, 'Orders') %>
+<h1>Your Orders (<%= @orders.count %>)</h1>
+
+<% if @orders.count == 0 %>
+
+  <li><h4>You've placed no prior orders.</h4></li>
+
+<% else %>
+
+  <table class="table">
+    <thead>
+      <th>Order Number</th>
+      <th>Date</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order %></td>
+          <td><%= order.updated_at %></td>
+          <td><%= number_to_currency(order.total) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>

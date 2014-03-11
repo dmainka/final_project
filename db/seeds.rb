@@ -154,3 +154,5 @@ all_book_data.each do |book_info|
   b.save
 end
 
+Order.destroy_all
+

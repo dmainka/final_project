@@ -3,20 +3,29 @@
 
 <% if @cart_items.count == 0 %>
 
-  <li>Your cart is currently empty.</li>
+  <li><h4>Your cart is currently empty.</h4></li>
+
+  <br>
+  <div class="row-fluid">
+    <%= link_to 'Continue Shopping', products_index_path, class: 'btn btn-info' %>
+  </div>
 
 <% else %>
 
-  <% @cart_items.each do |cart_item| %>
-    <div class="row-fluid">
-      <li>
-          <%= cart_item.quantity %> x <%= link_to cart_item.product.name, cart_item.product %> @ <%= number_to_currency(cart_item.product.price) %>
-      </li>
-    </div>
-  <% end %>
+  <%= will_paginate %>
+
+  <ul class="cart_items">
+    <%= render @cart_items %>
+  </ul>
+
+  <%= will_paginate %>
+
+  <br>
+  <div class="row">
+    <%= link_to 'Checkout', new_order_path, method: get, class: 'btn btn-success' %>
+    <%= link_to 'Continue Shopping', products_path, class: 'btn btn-info' %>
+    <%= link_to 'Empty cart', cart_items_empty_path, :method => :delete, :confirm => 'Are you sure?', class: 'pull-right btn btn-danger' %>
+  </div>
 
 <% end %>
 
-<br>
-
-<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?', class: 'btn btn-danger' %>

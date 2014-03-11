@@ -1,0 +1,12 @@
+<div class="row-fluid">
+  <li>
+      <!-- <input id="quantity" name="quantity" min="0" max="9" type="number" /> -->
+      <!-- <= number_field_tag 'quantity', cart_item.quantity, in: 0..10 %> -->
+      <%= cart_item.quantity %>
+       &times;
+      <%= link_to image_tag(cart_item.product.picture_url,  width: "50", height: "50"), cart_item.product %>
+      <%= link_to cart_item.product.name, cart_item.product %> @
+      <%= number_to_currency(cart_item.product.price) %>
+      <%= link_to "Edit Item", edit_cart_item_path(cart_item.id), :method => :get , class: 'pull-right' %>
+  </li>
+</div>

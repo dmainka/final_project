@@ -1,0 +1,42 @@
+<% provide(:title, 'Cart') %>
+<h1>Your Cart (<%= cart_count %>)</h1>
+
+<% if cart_count == 0 %>
+
+  <li><h4>Your cart is currently empty.</h4></li>
+
+  <br>
+  <%= link_to 'Continue Shopping', products_path, class: 'btn btn-info' %>
+
+<% else %>
+
+  <table class="table">
+    <thead>
+      <th>Quantity</th>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.quantity %></td>
+          <td><%= link_to image_tag(cart_item.product.picture_url,  width: "50", height: "50"), cart_item.product %></td>
+          <td><%= link_to cart_item.product.name, cart_item.product %></td>
+          <td><%= number_to_currency(cart_item.product.price) %></td>
+          <td><%= link_to "Edit Quantity", edit_cart_item_path(cart_item), :method => :get, class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <div class="row">
+    <%= link_to 'Checkout', new_order_path, class: 'btn btn-success' %>
+    <%= link_to 'Continue Shopping', products_path, class: 'btn btn-info' %>
+    <%= link_to 'Empty cart', cart_items_empty_path, :method => :delete, :confirm => 'Are you sure?', class: 'pull-right btn btn-danger' %>
+  </div>
+
+<% end %>
+

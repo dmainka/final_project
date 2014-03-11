@@ -8,4 +8,6 @@ module CustomersHelper
     image_tag(gravatar_url, alt: customer.name, class: "gravatar")
   end
 
+
+
 end

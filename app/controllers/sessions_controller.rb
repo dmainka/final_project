@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       sign_in customer
       redirect_back_or customer
     else
-      flash[:error] = 'Invalid email/password combination' # Not quite right!
+      flash[:error] = 'Invalid email/password combination'
       render 'new'
     end
   end
