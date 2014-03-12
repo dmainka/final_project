@@ -1,5 +1,7 @@
 FinalProject::Application.routes.draw do
 
+  get "books/index"
+  get "books/show"
   match 'cart_items/empty', to: 'cart_items#empty_cart', via: 'delete'
 
   resources :customers

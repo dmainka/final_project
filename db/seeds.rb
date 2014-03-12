@@ -100,6 +100,34 @@ The Rapid Rubyist gets you writing code fast and gives you a reference you can c
     :price => 32.99,
     :picture_url => "http://ecx.images-amazon.com/images/I/51JWihJrnDL._BO2,204,203,200_PIsitb-sticker-v3-big,TopRight,0,-55_SX278_SY278_PIkin4,BottomRight,1,22_AA300_SH20_OU01_.jpg"
     },
+  { :vendor_id => Vendor.find_by(name:'Vendor2').id,
+    :department_id => Department.find_by(name:'Books').id,
+    :name => "The Goldfinch",
+    :description => '"The Goldfinch is a rarity that comes along perhaps half a dozen times per decade, a smartly written literary novel that connects with the heart as well as the mind....Donna Tartt has delivered an extraordinary work of fiction."--Stephen King, The New York Times Book Review',
+    :price => 16.95,
+    :picture_url => "http://ecx.images-amazon.com/images/I/41kMZdwHgbL._SY160_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Books').id,
+    :name => "And the Mountains Echoed",
+    :description => '"The Goldfinch is a rarity that comes along perhaps half a dozen times per decade, a smartly written literary novel that connects with the heart as well as the mind....Donna Tartt has delivered an extraordinary work of fiction."--Stephen King, The New York Times Book Review',
+    :price => 16.36,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51VqHa8exoL._SY160_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Books').id,
+    :name => "Life After Life: A Novel",
+    :description => 'On a cold and snowy night in 1910, Ursula Todd is born to an English banker and his wife. She dies before she can draw her first breath. On that same cold and snowy night, Ursula Todd is born, lets out a lusty wail, and embarks upon a life that will be, to say the least, unusual. For as she grows, she also dies, ...',
+    :price => 27.99,
+    :picture_url => "http://ecx.images-amazon.com/images/I/41Rs%2BBfDOeL._SY160_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor2').id,
+    :department_id => Department.find_by(name:'Books').id,
+    :name => "Eleanor & Park",
+    :description => 'On a cold and snowy night in 1910, Ursula Todd is born to an English banker and his wife. She dies before she can draw her first breath. On that same cold and snowy night, Ursula Todd is born, lets out a lusty wail, and embarks upon a life that will be, to say the least, unusual. For as she grows, she also dies, ...',
+    :price => 10.72,
+    :picture_url => "http://ecx.images-amazon.com/images/I/41wqZT8I-wL._SY160_.jpg"
+    },
 ]
 
 Product.destroy_all
@@ -121,15 +149,15 @@ all_book_data = [
     },
   { :product_id => Product.find_by(name:"Agile Web Development with Rails 4 (Pragmatic Programmers)").id,
     :author => "Author1",
-    :pages => 100
+    :pages => 10
     },
   { :product_id => Product.find_by(name:"Practical Object-Oriented Design in Ruby: An Agile Primer").id,
     :author => "Author2",
-    :pages => 100
+    :pages => 400
     },
   { :product_id => Product.find_by(name:"The Rapid Rubyist").id,
     :author => "Author3",
-    :pages => 100
+    :pages => 388
     },
   { :product_id => Product.find_by(name:"Ruby on Rails 4.0 Guide").id,
     :author => "Author4",
@@ -137,11 +165,27 @@ all_book_data = [
     },
   { :product_id => Product.find_by(name:"The Ruby Programming Language").id,
     :author => "Author5",
-    :pages => 100
+    :pages => 105
     },
   { :product_id => Product.find_by(name:"Beginning Rails 4 (The Expert's Voice in Web Development)").id,
     :author => "Author6",
-    :pages => 100
+    :pages => 110
+    },
+  { :product_id => Product.find_by(name:"The Goldfinch").id,
+    :author => "Donna Tartt",
+    :pages => 200
+    },
+  { :product_id => Product.find_by(name:"And the Mountains Echoed").id,
+    :author => "Khaled Hosseini",
+    :pages => 150
+    },
+  { :product_id => Product.find_by(name:"Life After Life: A Novel").id,
+    :author => "Kate Atkinson",
+    :pages => 250
+    },
+  { :product_id => Product.find_by(name:"Eleanor & Park").id,
+    :author => "Rainbow Rowell",
+    :pages => 140
     },
 ]
 

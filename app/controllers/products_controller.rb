@@ -11,13 +11,14 @@ class ProductsController < ApplicationController
     case department.name
       when "Books"
         flash[:success] = "Found your book"
-        @book = Book.find_by(:product_id => product_id)
-        redirect_to book_path(@book.id)
-      when :Music
-        @book = Book.find_by :id => product_id
+        book = Book.find_by(:product_id => product_id)
+        redirect_to book_path(book.id)
+      when "Music1"
+        flash[:success] = "Found your music"
+        @music = Music.find_by :id => product_id
         render @music
       else
-        flash[:notice] = "Only found a generic product #{department.name}"
+        flash[:notice] = "Only found a generic product"
     end
   end
 
