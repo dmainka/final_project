@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="span6 offset3">
+    <h4>Order Number: <%= @order.id %></h4>
+    <br>
+    <h4>Order Date: <%= @order.order_date.strftime("%B %d, %Y at %I:%M %p") %></h4>
+    <br>
+    <h4>Name: <%= @order.name %></h4>
+    <br>
+    <h4>Ship to Address:</h4>
+    <h5><%= @order.ship_to_address %></h5>
+    <br>
+    <h4>Payment Type: <%= @order.payment_type %></h4>
+    <br>
+
+    <table class="table">
+      <thead>
+        <th>Quantity</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        <!-- Detail rows -->
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.quantity %></td>
+            <td><%= link_to image_tag(order_item.product.picture_url,  width: "50", height: "50"), order_item.product %></td>
+            <td><%= link_to order_item.product.name, order_item.product %></td>
+            <td><%= number_to_currency(order_item.product.price) %></td>
+          </tr>
+        <% end %>
+        <!-- Total row -->
+        <tr>
+          <td>Total:</td>
+          <td></td>
+          <td></td>
+          <td><%= number_to_currency(order.total) %></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>

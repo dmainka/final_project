@@ -17,7 +17,7 @@
         <%= f.select :payment_type, Order::PAYMENT_TYPES, :prompt => 'Select a payment method' %>
       </div>
       <div class="actions">
-        <%= f.submit 'Place Order', class: "btn btn-primary"  %>
+        <%= f.submit 'Place Order', class: "btn btn-primary", :confirm => "Are you sure you want to place this order?"  %>
       </div>
     <% end %>
   </div>

@@ -193,10 +193,14 @@ input {
 }
 
 /* Cart items */
-#quantity {
-  width: 5%;
-}
+// #quantity {
+//   width: 5%;
+// }
 
+/* Order */
+
+.order {
+}
 
 
 
@@ -222,6 +226,6 @@ input {
   border-bottom: 1px solid $grayLighter;
 }
 
-.vcenter {
-  vertical-align: middle;
-}
+// .vcenter {
+//   vertical-align: middle;
+// }

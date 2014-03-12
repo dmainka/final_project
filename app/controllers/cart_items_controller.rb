@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
 
-  before_action :correct_customer, only: [:edit, :update, :destroy, :show]
+  before_action :correct_customer, only: [:show, :edit, :update, :destroy]
 
   def index
     @cart_items = CartItem.where("customer_id = ?", current_customer).paginate(page: params[:page], :per_page => 10)
@@ -51,7 +51,6 @@ class CartItemsController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   def empty_cart

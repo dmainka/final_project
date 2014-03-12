@@ -10,6 +10,7 @@ class Customer < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   has_many :cart_items, :dependent => :destroy
+  has_many :order, :dependent => :destroy
 
   def Customer.new_remember_token
     SecureRandom.urlsafe_base64

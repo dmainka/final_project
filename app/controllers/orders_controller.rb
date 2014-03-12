@@ -1,13 +1,14 @@
-include SessionsHelper
-
 class OrdersController < ApplicationController
 
+  before_action :correct_customer, only: [:show, :edit, :update, :destroy]
+
   def index
-    @orders = Order.where("customer_id = ?", current_customer).paginate(page: params[:page], :per_page => 10)
+    @orders = Order.where("customer_id = ?", current_customer).order("order_date DESC").paginate(page: params[:page], :per_page => 10)
   end
 
   def show
-
+    @order = Order.find(params[:id])
+    @order_items = OrderItem.where("order_id = ?", @order.id)
   end
 
   def new
@@ -26,21 +27,25 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.order_date = Time.zone.now
+
+    cart_items = CartItem.where("customer_id = ?", current_customer);
+    @order.total = BigDecimal("0.00")
+    cart_items.each do |cart_item|
+      @order.total += Product.find(cart_item.product_id).price * BigDecimal(cart_item.quantity)
+    end
+
     if @order.save
       # get all cart items for current_customer
-      cart_items = CartItem.where("customer_id = ?", current_customer);
-      order_total = 0
       cart_items.each do |cart_item|
         order_item = OrderItem.new
         order_item.order_id = @order.id
         order_item.product_id = cart_item.product_id
-        order_total += cart_item.quantity * Product.find_by(cart_item.product_id).price
+        order_item.quantity = cart_item.quantity
         cart_item.destroy
         order_item.save
       end
-      @order.total = order_total
-      flash[:success] = "Order successfully created! for customer!"
-      redirect_to products_path
+      flash[:success] = "Order #{@order.id} successfully created!"
+      redirect_to orders_path
     else
       render 'new'
     end
@@ -53,6 +58,17 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:name, :ship_to_address, :payment_type)
+    end
+
+    # Before filters
+
+    def correct_customer
+      order = Order.find(params[:id])
+      customer = Customer.find(order.customer_id)
+      if (!current_customer?(customer))
+        flash[:notice] = "Nice try!"
+        redirect_to orders_path
+      end
     end
 
 end
