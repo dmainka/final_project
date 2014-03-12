@@ -8,8 +8,8 @@
         <% if signed_in? %>
           <%= link_to "Add to cart", cart_items_path(:product_id => @product), :method => :post, :class => "btn btn-success" %>
         <% else %>
-          <% session[:return_to] = current_page %>
-          <%= link_to "Add to cart", sign_in_path, :class => "btn btn-success" %>
+          <% session[:return_to] = request.env['REQUEST_PATH'] %>
+          <%= link_to "Add to cart", signin_path, :class => "btn btn-success" %>
         <% end %>
       </li>
     </div>

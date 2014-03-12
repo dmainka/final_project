@@ -1,10 +1,14 @@
-<% provide(:title, 'All customers') %>
-<h1>All customers</h1>
+<% if current_customer.admin? %>
+  <% provide(:title, 'All customers') %>
+  <h1>All customers</h1>
 
-<%= will_paginate %>
+  <%= will_paginate %>
 
-<ul class="customers">
-  <%= render @customers %>
-</ul>
+  <ul class="customers">
+    <%= render @customers %>
+  </ul>
 
-<%= will_paginate %>
+  <%= will_paginate %>
+<% else %>
+  <h1>You are not authorized to view this page</h1>
+<% end %>

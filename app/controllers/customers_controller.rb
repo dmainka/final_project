@@ -1,15 +1,24 @@
 class CustomersController < ApplicationController
 
   before_action :signed_in_customer, only: [:edit, :update]
-  before_action :correct_customer,   only: [:show, :edit, :update]
-  before_action :admin_user,         only: :destroy
+  before_action :correct_customer,   only: [:edit, :update]
+  before_action :admin_user,         only: [:destroy]
 
   def index
-    @customers = Customer.paginate(page: params[:page])
+    if current_customer.admin?
+      @customers = Customer.paginate(page: params[:page])
+    else
+      flash[:error] = "You are not authorized to view this page"
+      redirect_to root_path
+    end
   end
 
   def show
     @customer = Customer.find(params[:id])
+    if (!current_customer.admin? && !current_customer?(@customer))
+      flash[:error] = "You are not authorized to view this customer!"
+      redirect_to root_path
+    end
   end
 
   def new
@@ -31,6 +40,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
     if @customer.update_attributes(customer_params)
       flash[:success] = "Profile updated"
       redirect_to @customer
@@ -55,7 +65,6 @@ class CustomersController < ApplicationController
 
     def signed_in_customer
       unless signed_in?
-        store_location
         redirect_to signin_url, notice: "Please sign in."
       end
     end
@@ -65,7 +74,7 @@ class CustomersController < ApplicationController
       redirect_to(root_url) unless current_customer?(@customer)
     end
 
-  def admin_user
+    def admin_user
       redirect_to(root_url) unless current_customer.admin?
     end
 

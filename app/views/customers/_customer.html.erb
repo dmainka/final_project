@@ -4,4 +4,8 @@
   <% if current_customer.admin? && !current_customer?(customer) %>
     | <%= link_to "delete", customer, method: :delete, data: { confirm: "You sure?" } %>
   <% end %>
+  <br>
+  email: <%= customer.email %>
+  <br>
+  Is Admin: <%= customer.admin %>
 </li>
