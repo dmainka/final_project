@@ -25,7 +25,8 @@
           <td><%= link_to image_tag(cart_item.product.picture_url,  width: "50", height: "50"), cart_item.product %></td>
           <td><%= link_to cart_item.product.name, cart_item.product %></td>
           <td><%= number_to_currency(cart_item.product.price) %></td>
-          <td><%= link_to "Edit Quantity", edit_cart_item_path(cart_item), :method => :get, class: "btn btn-info" %></td>
+          <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_cart_item_path(cart_item), :method => :get, class: "btn btn-info" %>
+            <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, cart_item_path(cart_item), :method => :delete, class: "btn btn-info" %></td>
         </tr>
       <% end %>
     </tbody>

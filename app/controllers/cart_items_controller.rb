@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
 
-  # before_action :correct_customer only: [:edit, :update, :destroy, :show], { |cart_item| correct_customer cart_item }
+  before_action :correct_customer, only: [:edit, :update, :destroy, :show]
 
   def index
     @cart_items = CartItem.where("customer_id = ?", current_customer).paginate(page: params[:page], :per_page => 10)
@@ -29,45 +29,37 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    if (!current_customer?(@cart_item.customer_id))
-      flash[:notice] = "Nice try!"
-      redirect_to cart_items_path
-    else
-      CartItem.find(params[:id]).destroy
-      redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
-    end
+    # @cart_item = CartItem.find(params[:id])
+    # if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
+    #   flash[:notice] = "Nice try!"
+    #   redirect_to cart_items_path
+    # else
+    #   CartItem.find(params[:id]).destroy
+    #   redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
+    # end
+    @cart_item = CartItem.find(params[:id])
+    CartItem.find(params[:id]).destroy
+    redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
+
   end
 
   def edit
     @cart_item = CartItem.find(params[:id])
-    if (!current_customer?(@cart_item.customer_id))
-      flash[:notice] = "Nice try!"
-      redirect_to cart_items_path
-    end
+    # if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
+    #   flash[:notice] = "Nice try!"
+    #   redirect_to cart_items_path
+    # end
   end
 
   def update
-    if (!current_customer?(@cart_item.customer_id))
+    @cart_item = CartItem.find(params[:id])
+    if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
       flash[:notice] = "Nice try!"
       redirect_to cart_items_path
     end
 
     redirect_to(cart_items_path, :notice => "Item was successfully edited.")
 
-    # get all cart items for current_customer
-    # cart_items = CartItem.where("customer_id = ?", current_customer);
-
-    # current_item = cart_items.where(:product_id => params[:product_id]).first
-
-    # current_item = @cart.update_product(params[:product_id], params[:quantity])
-    # respond_to do |format|
-    #     if @cart_item.save
-    #         format.html { redirect_to current_cart, notice: 'Changed' }
-    #         format.js
-    #     else
-    #         format.html { render action: "new" }
-    #     end
-    # end
   end
 
   def empty_cart
@@ -82,6 +74,15 @@ class CartItemsController < ApplicationController
 
   private
 
+    # Before filters
 
+    def correct_customer
+      cart_item = CartItem.find(params[:id])
+      customer = Customer.find_by(cart_item.customer_id)
+      if (!current_customer?(customer))
+        flash[:notice] = "Nice try!, #{cart_item.id} #{customer.name}"
+        redirect_to cart_items_path
+      end
+    end
 
 end

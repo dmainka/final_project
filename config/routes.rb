@@ -5,7 +5,7 @@ FinalProject::Application.routes.draw do
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
   resources :products, only: [:index, :show]
-  resources :cart_items, only: [:index, :edit, :update, :create]
+  resources :cart_items
   resources :books, only: [:show]
   resources :orders, only: [:new, :index, :create, :show]
   resources :order_items, only: [:index, :show]
