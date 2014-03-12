@@ -8,6 +8,8 @@ class CartItemsController < ApplicationController
   end
 
   def show
+    cart_item = CartItem.find(params[:id])
+    render cart_item
   end
 
   def create
@@ -29,36 +31,26 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    # @cart_item = CartItem.find(params[:id])
-    # if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
-    #   flash[:notice] = "Nice try!"
-    #   redirect_to cart_items_path
-    # else
-    #   CartItem.find(params[:id]).destroy
-    #   redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
-    # end
     @cart_item = CartItem.find(params[:id])
     CartItem.find(params[:id]).destroy
     redirect_to(cart_items_path, :notice => "Item was successfully deleted from your cart.")
-
   end
 
   def edit
     @cart_item = CartItem.find(params[:id])
-    # if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
-    #   flash[:notice] = "Nice try!"
-    #   redirect_to cart_items_path
-    # end
   end
 
   def update
     @cart_item = CartItem.find(params[:id])
-    if (!current_customer?(Customer.find_by(@cart_item.customer_id)))
-      flash[:notice] = "Nice try!"
+    if @cart_item.update_attributes(cart_params)
+      flash[:success] = "Quantity updated"
+      if (@cart_item.quantity <= 0)
+        @cart_item.destroy
+      end
       redirect_to cart_items_path
+    else
+      render 'edit'
     end
-
-    redirect_to(cart_items_path, :notice => "Item was successfully edited.")
 
   end
 
@@ -74,13 +66,17 @@ class CartItemsController < ApplicationController
 
   private
 
+    def cart_params
+      params.require(:cart_item).permit(:quantity)
+    end
+
     # Before filters
 
     def correct_customer
       cart_item = CartItem.find(params[:id])
-      customer = Customer.find_by(cart_item.customer_id)
+      customer = Customer.find(cart_item.customer_id)
       if (!current_customer?(customer))
-        flash[:notice] = "Nice try!, #{cart_item.id} #{customer.name}"
+        flash[:notice] = "Nice try!"
         redirect_to cart_items_path
       end
     end

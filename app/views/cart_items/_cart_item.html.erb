@@ -1,12 +1,21 @@
-<div class="row-fluid">
-  <li>
-      <!-- <input id="quantity" name="quantity" min="0" max="9" type="number" /> -->
-      <!-- <= number_field_tag 'quantity', cart_item.quantity, in: 0..10 %> -->
-      <%= cart_item.quantity %>
-       &times;
-      <%= link_to image_tag(cart_item.product.picture_url,  width: "50", height: "50"), cart_item.product %>
-      <%= link_to cart_item.product.name, cart_item.product %> @
-      <%= number_to_currency(cart_item.product.price) %>
-      <%= link_to <i class="fa fa-edit"></i> edit_cart_item_path(cart_item.id), :method => :get , class: 'pull-right' %>
-  </li>
-</div>
+<ul class="cart_items">
+  <table class="table">
+    <thead>
+      <th>Quantity</th>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= cart_item.quantity %></td>
+          <td><%= link_to image_tag(cart_item.product.picture_url,  width: "50", height: "50"), cart_item.product %></td>
+          <td><%= link_to cart_item.product.name, cart_item.product %></td>
+          <td><%= number_to_currency(cart_item.product.price) %></td>
+          <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_cart_item_path(cart_item), :method => :get, class: "btn btn-info" %>
+            <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, cart_item_path(cart_item), :method => :delete, class: "btn btn-info" %></td>
+        </tr>
+    </tbody>
+  </table>
+</ul>
