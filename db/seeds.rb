@@ -26,20 +26,21 @@ all_customer_data.each do |customer_info|
 end
 
 all_vendor_data = [
-  { :name => "Vendor1" },
-  { :name => "Vendor2" },
-  { :name => "Vendor3" },
-  { :name => "Vendor4" },
+  { :name => "Vendor1", :rating => 1 },
+  { :name => "Vendor2", :rating => 2 },
+  { :name => "Vendor3", :rating => 3 },
+  { :name => "Vendor4", :rating => 4 },
 ]
 
 Vendor.destroy_all
 all_vendor_data.each do |vendor_info|
   v = Vendor.new
   v.name = vendor_info[:name]
+  v.rating = vendor_info[:rating]
   v.save
 end
 
-all_department_data = [ { :name => "Books" }, { :name => "Music" }]
+all_department_data = [ { :name => "Books" }, { :name => "Songs" }]
 Department.destroy_all
 all_department_data.each do |department_info|
   d = Department.new
@@ -128,6 +129,83 @@ The Rapid Rubyist gets you writing code fast and gives you a reference you can c
     :price => 10.72,
     :picture_url => "http://ecx.images-amazon.com/images/I/41wqZT8I-wL._SY160_.jpg"
     },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Happy (from Despicable Me 2)",
+    :description => 'Upbeat/happy song',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51AhmUv5RoL._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Best Day Of My Life",
+    :description => 'Great song, of course, but the volume levels on this MP3 I downloaded keep going up and down. Useless for my purposes.  BTW, it sounds fine in the Cloud Player, but I need the MP3 and the downloaded MP3s volume levels are messed up.',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/61%2BadUzVhKL._SL160_SL150_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Love Don't Die",
+    :description => 'They\'re still at it? LOL. I haven\'t even heard of the Fray since my middle school days nearly 10 years ago, when everyone thought that "how to save a life" song was the s*** because it was oh so cool to be emo. Sad to see they haven\'t grown musically along with their fans.',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/61zQQ4sXA%2BL._SL160_SL150_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor1').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Bottoms Up",
+    :description => 'This song is no different than everything else this THUG wannabe makes, it\'s horrible and a disgrace to country music!',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51087Z03jcL._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Raging Fire",
+    :description => 'The song is upbeat and shows alot of passion! One of Phillip Phillips\' hits! Can\'t wait for his new album!',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/61U7McuDo8L._SL160_SL150_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Magic",
+    :description => 'Cannot wait until the comes album out. Do yourself a favor and buy it. YES!! Coldplay is back!!!',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51jpEDjNktL._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Team",
+    :description => 'Good quality and great song! It\'s so easy to download songs off of Nile.com. I use the service regularly. Thanks.',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/41XAtgtU1xL._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor4').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Say Something",
+    :description => 'I love this song. Heartfelt, yet simple and sweet. Feel kinda bad for the guy, cause she won\'t say anything. Her loss.',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51RMnhqasCL._SL160_SL150_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Young And Beautiful",
+    :description => 'Absolutely LOVE this song. It\'s so Lana Del Rey, her voice is beautiful as are the lyrics. This song is perfect for the soundtrack.  Also, this is the first mp3 I\'ve ever downloaded from Nile and it was completely pain-free!',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/61w9Ebsy0yL._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Safe And Sound",
+    :description => 'Capital Cities at their best!',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/619uUpWLV1L._SL500_AA280_.jpg"
+    },
+  { :vendor_id => Vendor.find_by(name:'Vendor3').id,
+    :department_id => Department.find_by(name:'Songs').id,
+    :name => "Say Goodbye",
+    :description => 'The latest release from Beck...',
+    :price => 1.29,
+    :picture_url => "http://ecx.images-amazon.com/images/I/51X7l6td0ML._SL160_SL150_.jpg"
+    },
 ]
 
 Product.destroy_all
@@ -197,6 +275,75 @@ all_book_data.each do |book_info|
   b.pages = book_info[:pages]
   b.save
 end
+
+all_song_data = [
+  { :product_id => Product.find_by(name:"Happy (from Despicable Me 2)").id,
+    :artist => "Pharrell Williams",
+    :album => "Happy (from Despicable Me 2)",
+    :time => 233
+    },
+  { :product_id => Product.find_by(name:"Best Day Of My Life").id,
+    :artist => "American Authors",
+    :album => "Oh, What A Life",
+    :time => 194
+    },
+  { :product_id => Product.find_by(name:"Love Don't Die").id,
+    :artist => "The Fray",
+    :album => "Helios",
+    :time => 183
+    },
+  { :product_id => Product.find_by(name:"Bottoms Up").id,
+    :artist => "Brantley Gilbert",
+    :album => "Bottoms Up",
+    :time => 222
+    },
+  { :product_id => Product.find_by(name:"Raging Fire").id,
+    :artist => "Phillip Phillips",
+    :album => "Raging Fire",
+    :time => 225
+    },
+  { :product_id => Product.find_by(name:"Magic").id,
+    :artist => "Coldplay",
+    :album => "Ghost Stories",
+    :time => 285
+    },
+  { :product_id => Product.find_by(name:"Team").id,
+    :artist => "Lorde",
+    :album => "Pure Heroine",
+    :time => 193
+    },
+  { :product_id => Product.find_by(name:"Say Something").id,
+    :artist => "A Great Big World",
+    :album => "Is There Anybody Out There?",
+    :time => 233
+    },
+  { :product_id => Product.find_by(name:"Young And Beautiful").id,
+    :artist => "Lana Del Rey",
+    :album => "Young and Beautiful",
+    :time => 236
+    },
+  { :product_id => Product.find_by(name:"Safe And Sound").id,
+    :artist => "Capital Cities",
+    :album => "In A Tidal Wave of Mystery",
+    :time => 192
+    },
+  { :product_id => Product.find_by(name:"Say Goodbye").id,
+    :artist => "Beck",
+    :album => "Morning Phase",
+    :time => 219
+    },
+]
+
+Song.destroy_all
+all_song_data.each do |song_info|
+  s = Song.new
+  s.product_id = song_info[:product_id]
+  s.artist = song_info[:artist]
+  s.album = song_info[:album]
+  s.time = song_info[:time]
+  s.save
+end
+
 
 Order.destroy_all
 

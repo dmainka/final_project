@@ -9,4 +9,5 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @product = Product.find(@book.product_id)
   end
+
 end

@@ -1,15 +1,16 @@
 FinalProject::Application.routes.draw do
 
-  get "books/index"
-  get "books/show"
+  get "vendors/show"
   match 'cart_items/empty', to: 'cart_items#empty_cart', via: 'delete'
 
   resources :customers
   resources :sessions, only: [:new, :create, :destroy]
   resources :products, only: [:index, :show]
-  resources :cart_items
   resources :books, only: [:index, :show]
+  resources :songs, only: [:index, :show]
+  resources :cart_items
   resources :orders, only: [:new, :index, :create, :show]
+  resources :vendors, only: [:show]
   # resources :order_items, only: [:index, :show]
 
   root  'static_pages#home'

@@ -7,18 +7,18 @@ class ProductsController < ApplicationController
   def show
     product_id = params["id"]
     @product = Product.find(product_id)
-    department = Department.find_by(@product.department_id)
+    department = Department.find(@product.department_id)
     case department.name
       when "Books"
-        flash[:success] = "Found your book"
+        # flash[:success] = "Found your book"
         book = Book.find_by(:product_id => product_id)
         redirect_to book_path(book.id)
-      when "Music1"
-        flash[:success] = "Found your music"
-        @music = Music.find_by :id => product_id
-        render @music
+      when "Songs"
+        # flash[:success] = "Found your song"
+        song = Song.find_by(:product_id => product_id)
+        redirect_to song_path(song.id)
       else
-        flash[:notice] = "Only found a generic product"
+        flash[:notice] = "Only found a generic product #{department.name}"
     end
   end
 
