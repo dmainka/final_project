@@ -17,5 +17,12 @@
     <p><b>Pages: </b><%= @book.pages %></p>
     <p><b>Description: </b><%= @product.description %></p>
     <p><b>Price: </b><%= number_to_currency(@product.price) %></p>
+    <p>
+      <b>Vendor: </b><%= link_to Product.find(@product.id).vendor.name, Vendor.find(Product.find(@product.id).vendor) %>,
+      <b> Vendor Avg Rating: </b>
+      <% Product.find(@product.id).vendor.rating.times do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+    </p>
   </div>
 </div>

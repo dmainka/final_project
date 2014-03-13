@@ -1,2 +1,15 @@
-<h1>Vendors#show</h1>
-<p>Find me in app/views/vendors/show.html.erb</p>
+<% provide(:title, @vendor.name) %>
+<div class="row">
+  <aside class="span6">
+    <section>
+      <h1>
+        <%= @vendor.name %>
+      </h1>
+      <br>
+      <b> Vendor Avg Rating: </b>
+      <% @vendor.rating.times do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+    </section>
+  </aside>
+</div>

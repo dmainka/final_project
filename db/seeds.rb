@@ -280,57 +280,68 @@ all_song_data = [
   { :product_id => Product.find_by(name:"Happy (from Despicable Me 2)").id,
     :artist => "Pharrell Williams",
     :album => "Happy (from Despicable Me 2)",
-    :time => 233
+    :time => 233,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Best Day Of My Life").id,
     :artist => "American Authors",
     :album => "Oh, What A Life",
-    :time => 194
+    :time => 194,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Love Don't Die").id,
     :artist => "The Fray",
     :album => "Helios",
-    :time => 183
+    :time => 183,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Bottoms Up").id,
     :artist => "Brantley Gilbert",
     :album => "Bottoms Up",
-    :time => 222
+    :time => 222,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Raging Fire").id,
     :artist => "Phillip Phillips",
     :album => "Raging Fire",
-    :time => 225
+    :time => 225,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Magic").id,
     :artist => "Coldplay",
     :album => "Ghost Stories",
-    :time => 285
+    :time => 285,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Team").id,
     :artist => "Lorde",
     :album => "Pure Heroine",
-    :time => 193
+    :time => 193,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Say Something").id,
     :artist => "A Great Big World",
     :album => "Is There Anybody Out There?",
-    :time => 233
+    :time => 233,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Young And Beautiful").id,
     :artist => "Lana Del Rey",
     :album => "Young and Beautiful",
-    :time => 236
+    :time => 236,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Safe And Sound").id,
     :artist => "Capital Cities",
     :album => "In A Tidal Wave of Mystery",
-    :time => 192
+    :time => 192,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
   { :product_id => Product.find_by(name:"Say Goodbye").id,
     :artist => "Beck",
     :album => "Morning Phase",
-    :time => 219
+    :time => 219,
+    :snippet_url => "http://www.w3schools.com/html/horse.mp3"
     },
 ]
 
@@ -341,6 +352,7 @@ all_song_data.each do |song_info|
   s.artist = song_info[:artist]
   s.album = song_info[:album]
   s.time = song_info[:time]
+  s.snippet_url = song_info[:snippet_url]
   s.save
 end
 

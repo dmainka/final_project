@@ -4,7 +4,7 @@
 
     <p><%= image_tag(@product.picture_url,  width: "150", height: "250") %></p>
     <audio controls>
-      <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+      <source src=<%= @song.snippet_url %> type="audio/mpeg">
       Your browser does not support this audio format.
     </audio>
 
@@ -23,5 +23,13 @@
     <p><b>Time: </b><%= distance_of_time_in_words(@song.time) %></p>
     <p><b>Description: </b><%= @product.description %></p>
     <p><b>Price: </b><%= number_to_currency(@product.price) %></p>
+    <p>
+      <b>Vendor: </b><%= link_to Product.find(@product.id).vendor.name, Vendor.find(Product.find(@product.id).vendor) %>,
+      <b> Vendor Avg Rating: </b>
+      <% Product.find(@product.id).vendor.rating.times do %>
+        <i class="fa fa-star"></i>
+      <% end %>
+    </p>
+
   </div>
 </div>
